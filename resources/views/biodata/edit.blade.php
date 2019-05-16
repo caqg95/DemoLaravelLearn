@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h3>Create New Biodata</h3>
+            <h3>Edit {{$biodata->namaSiswa}}</h3> 
         </div>
     </div>
     @if($errors->any())
@@ -16,16 +16,18 @@
         </ul>
     </div>
     @endif
-    <form action="{{ route('biodata.store') }}" method="post">
+    <form action="{{ route('biodata.update',$biodata->id) }}" method="post">
         {{csrf_field()}}
+        {{method_field('PUT') }}
         <div class="row">
             <div class="col-md-12">
                 <strong>Nama Siswa:</strong>
-                <input type="text" name="namaSiswa" class="form-control" placeholder="Nama Siswa">
+                <input type="text" name="namaSiswa" class="form-control" value="{{$biodata->namaSiswa}}" placeholder="Nama Siswa">
             </div>
             <div class="col-md-12">
                 <strong>Alamat Siswa:</strong>
-                <textarea name="alamatSiswa" placeholder="Alamat Siswa" row=3 class="form-control"></textarea>
+                <textarea name="alamatSiswa" placeholder="Alamat Siswa" row=3 class="form-control">{{$biodata->alamatSiswa}}
+                </textarea>
             </div>
             <div class="col-md-12">
                 <a href="{{ route('biodata.index') }}" class="btn btn-sm btn-success">Back</a>
@@ -33,8 +35,5 @@
             </div>
         </div>
     </form>
-
-
-
 </div>
 @endsection
